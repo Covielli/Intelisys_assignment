@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'maven install'
+        sh 'apt-get update && apt-get install -y git maven'
       }
     }
 
