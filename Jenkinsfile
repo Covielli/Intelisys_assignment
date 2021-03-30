@@ -9,9 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''sudo su
-'''
-        sh 'apt-get update && apt-get install -y git maven'
+        sh 'RUN apt-get update && apt-get install -y git maven'
         sh '''rm -rf ~/lab6
 mkdir ~/lab6
 cd ~/lab6 && git clone --recursive https://github.com/halushko/appz_bot_example.git
