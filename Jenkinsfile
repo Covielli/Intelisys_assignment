@@ -1,19 +1,22 @@
 pipeline {
-  agent {
-    docker {
-      args '-p 3000:3000'
-      image 'ubuntu'
-    }
+  environment (dickerImage = '')
+  agent any
 
   }
   stages {
+    stage('Prepare'){
+      steps{
+        sh 'docker stop $(docker ps -q --filter "ancestor=lab11botcarrier")'
+        sh 'docker rm -f $(docker ps -q --filter "ancestor=lab11botcarrier" --filter "status=exited")'
+      }
+    }
     stage('Build') {
       steps {
-        sh '''docker stop $(docker ps -q --filter "ancestor=lab11botcarrier")
-docker rm -f $(docker ps -q --filter "ancestor=lab11botcarrier" --filter "status=exited")
-docker build -f ./Dockerfile .
-docker run -d lab11botcarrier'''
+        sh 'docker build -t lab11botcarrier ./Dockerfile .'
       }
+    }
+    stage('Deploy'){
+      sh 'docker run -d lab11botcarrier'
     }
 
   }
