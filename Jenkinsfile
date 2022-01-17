@@ -1,8 +1,6 @@
 pipeline {
   environment (dickerImage = '')
   agent any
-
-  }
   stages {
     stage('Prepare'){
       steps{
