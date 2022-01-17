@@ -10,7 +10,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'docker build -t lab11botcarrier ./Dockerfile .'
+        sh 'docker build -t lab11botcarrier /var/jenkins_home/workspace/DockerPipeline/Dockerfile'
       }
     }
     stage('Deploy'){
